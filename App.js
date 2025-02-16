@@ -1,29 +1,30 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import DocumentManagement from './DocumentManagement';
-import Certify from './Certify';
-import Update from './Update';
-import View from './View';
-import Dashboard from './Dashboard';
-import './nucleo-svg.css';
-import './nucleo-icons.css';
-import './material-dashboard.min.css';
-import './material-dashboard.css.map';
-import './material-dashboard.css';
-
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import DocumentManagement from "./components/DocumentManagement";
+import Upload from "./components/Upload";
+import Certify from "./components/Certify";
+import ViewDocument from "./components/ViewDocument";
+import UserCard from "./components/UserCard";
 
 const App = () => {
-    return (
-        <Router>
-            <Routes>
-                <Route path="/DocumentManagement" element={<DocumentManagement />} />
-                <Route path="/view" element={<View />} />
-                <Route path="/upload" element={<Update />} />
-                <Route path="/certify" element={<Certify />} />
-                <Route path="/" element={<Dashboard />} />
-            </Routes>
-        </Router>
-    );
+    const dataStore = {
+        name: "Alice",        // User's Name
+        email: "alice@example.com",  // User's Email
+        age: 30               // User's Age
+      };
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<DocumentManagement />} />
+        <Route path="/documentmanagement" element={<DocumentManagement />} />
+        <Route path="/upload" element={<Upload />} />
+        <Route path="/certify" element={<Certify />} />
+        <Route path="/view" element={<ViewDocument />} />
+        <Route path="/usercard" element={<UserCard {...dataStore} />} /> {/* Passing dataStore to UserCard */}
+      </Routes>
+    </Router>
+
+  );
 };
 
 export default App;
